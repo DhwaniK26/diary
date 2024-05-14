@@ -1,0 +1,44 @@
+.imgg{
+    height: 300px;
+    width: 300px;
+}
+
+.maindiv{
+  /* background-color: white; */
+  background-image: url("https://tse4.mm.bing.net/th?id=OIP.qmVKkpnwsGVb_myG3bHnHwHaFu&pid=Api&P=0&h=18");
+  background-size: cover;
+  border-radius: 4px;
+  box-shadow: 0 0 8px #b3b5b8 inset;
+
+}
+
+.crossbtn{
+    color:#8B322C;
+}
+
+.crossbtn:hover{
+    color: rgb(238, 114, 114);
+}
+
+.imgdiv{
+    height: 200px;
+    width: 300px;
+}
+.textdiv{
+   width:700px;
+   height: 300px;
+   overflow-y: auto; /* Enable vertical scrollbar */
+   border-left:#8B322C;
+   background-color: white;
+}
+
+@media only screen and (max-width: 950px) {
+ 
+    .textdiv{
+        width:500px ;
+        height: 130px;
+        border: 1px solid rgb(238, 239, 209);
+        background-color: rgb(255, 255, 255);
+        border-radius: 5px;
+     }
+} 
