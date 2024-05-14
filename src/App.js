@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react'
 import Story from './comps/story'
 import List2 from './comps/List2'
-import { useState } from 'react';
-import './App.css'
+import { useState, useRef } from 'react';
+import './App.css';
+import html2pdf from 'html2pdf.js';
 
 export default function App() {
-
+  const myref = useRef();
+  const downbutton = useRef(null);
+  
   const [selectedFile, setSelectedFile] = useState([]); //initial value of file
   const [mystory, storyfunc] = useState(null);
   const [flag, flagfunc] = useState(false);
@@ -59,6 +62,13 @@ export default function App() {
   //  console.log("after removing",updatedItems)
  }
   
+ //----------pdf------------
+ function mylastfunc(){
+  const element = myref.current;
+
+  html2pdf().from(element).save();
+   return true;
+}
   return (
     <div>
       <div className='upper-div m-2 p-2' >
@@ -67,15 +77,16 @@ export default function App() {
          <div className='d-flex justify-content-center'>
          <button type='submit' onClick={onupload} className='mybtn me-2'>Upload</button>
          <button onClick={handleDeleteAllEntries} className='mybtn'>Delete All Entries</button>
-         </div>
+         <button id="myButton" ref={downbutton} onClick={mylastfunc} className='mybtn2 m-2'>Download PDF</button>
+      </div>
       {/* {arraystate.map((e, index) => (<Story key={index} photo={e.photoname[index].myname} myphotostory={e.storyname} /> )) } */}
       </div>
       <h4 style={{textAlign:"center",color:"orange"}}>Your memories !!</h4>
 
       {/* {diaryEntries.map((e, index) => (<Story key={index} photo={e.entryphoto[0]} myphotostory={e.entrystory} /> )) } */}
-
-      {diaryEntries.map((e, index) =>(<Story key={e.index} src={e.storyname} photo={e.photoname[index]} myphotostory={e.storyname} removefunc={removeitem} /> )) }
-
+      <div ref={myref} >
+        {diaryEntries.map((e, index) =>(<Story key={e.index} src={e.storyname} photo={e.photoname[index]} myphotostory={e.storyname} removefunc={removeitem} /> )) }
+      </div>
       {/* {flag == true ? diaryEntries.map((e, index) =>(<Story key={e.index} src={e.storyname} photo={e.photoname[index + 1]} myphotostory={e.storyname} removefunc={removeitem} /> )) : 
       diaryEntries.map((e, index) =>(<Story key={e.index} src={e.storyname} photo={e.photoname[index]} myphotostory={e.storyname} removefunc={removeitem} /> )) } */}
 

@@ -14,7 +14,9 @@ export default function Story(props) {
           <i className='m-2 fa fa-times crossbtn' onClick={() => props.removefunc(props.src)}></i>
         </div>
         <div className=' m-2 p-1 textdiv '>
+           {props.mydate}<br></br><br></br>
            {props.myphotostory}
+
         </div>
       </div>
 
